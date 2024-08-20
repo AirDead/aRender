@@ -2,6 +2,7 @@ package dev.airdead.common.math
 
 import kotlin.math.sqrt
 
+@Suppress("MemberVisibilityCanBePrivate")
 data class V2(
     var x: Number = 0.0,
     var y: Number = 0.0

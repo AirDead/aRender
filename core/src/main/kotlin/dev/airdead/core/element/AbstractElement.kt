@@ -1,5 +1,7 @@
 package dev.airdead.core.element
 
+import dev.airdead.common.animation.AnimationChain
+import dev.airdead.common.animation.Easing
 import dev.airdead.common.element.Element
 import dev.airdead.common.element.InteractiveElement
 import dev.airdead.common.element.RendererElement
@@ -35,6 +37,14 @@ abstract class AbstractElement : InteractiveElement, RendererElement {
 
     override fun onRightClick(handler: ClickHandler) {
         this.onRightClick = handler
+    }
+
+    override fun animate(
+        duration: Double,
+        easing: Easing,
+        updateProperties: RendererElement.() -> Unit
+    ): AnimationChain {
+        TODO("Not yet implemented")
     }
 
     override fun isHovered(mouseX: Double, mouseY: Double) {
