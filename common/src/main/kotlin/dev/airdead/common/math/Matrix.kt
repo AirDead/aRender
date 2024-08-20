@@ -9,6 +9,7 @@ interface Matrix {
     fun scale(x: Number, y: Number, z: Number)
     fun translate(x: Number, y: Number, z: Number)
     fun multiply(quaternionf: Quaternionf, x: Number = 0, y: Number = 0, z: Number = 0)
+    fun rotate(angle: Number, x: Number, y: Number, z: Number)
     fun push()
     fun pop()
     fun peek(): MatrixEntry
