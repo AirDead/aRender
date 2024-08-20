@@ -1,4 +1,4 @@
-package dev.airdead.common.core
+package dev.airdead.core
 
 import dev.airdead.common.math.Matrix
 import dev.airdead.common.math.MatrixEntry

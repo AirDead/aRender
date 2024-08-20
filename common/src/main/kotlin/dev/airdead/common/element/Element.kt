@@ -1,10 +1,9 @@
 package dev.airdead.common.element
 
-import dev.airdead.common.math.Matrix
 import dev.airdead.common.math.V3
 
 /**
- * Represents a basic element for rendering
+ * Represents a basic element
  */
 interface Element {
 
@@ -14,9 +13,23 @@ interface Element {
     var size: V3
 
     /**
-     * Render the element
-     *
-     * @param matrix The matrix
+     * The alignment of the element.
      */
-    fun render(matrix: Matrix)
+    var align: V3
+
+    /**
+     * The origin point of the element.
+     */
+    var origin: V3
+
+    /**
+     * The offset of the element.
+     */
+    var offset: V3
+
+    /**
+     * The rotation of the element.
+     */
+    var rotation: V3
+
 }

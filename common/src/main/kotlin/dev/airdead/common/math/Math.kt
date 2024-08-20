@@ -34,3 +34,12 @@ data class Rotation(
     var yaw: Float = 0f,
     var roll: Float = 0f
 )
+
+/**
+ * Creates a 3-dimensional vector from two numbers, with the z-coordinate set to 0.0.
+ *
+ * @receiver The x-coordinate of the vector.
+ * @param other The y-coordinate of the vector.
+ * @return A new 3-dimensional vector.
+ */
+inline infix fun Number.x(other: Number): V3 = V3(this.toDouble(), other.toDouble(), 0.0)
