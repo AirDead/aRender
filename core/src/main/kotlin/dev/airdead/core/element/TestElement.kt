@@ -1,11 +1,6 @@
 package dev.airdead.core.element
 
 import com.mojang.blaze3d.systems.RenderSystem
-import dev.airdead.common.element.Element
-import dev.airdead.common.element.InteractiveElement
-import dev.airdead.common.element.RendererElement
-import dev.airdead.common.handler.ClickHandler
-import dev.airdead.common.handler.HoverHandler
 import dev.airdead.common.math.Matrix
 import dev.airdead.common.math.V3
 import dev.airdead.common.math.x
@@ -14,17 +9,9 @@ import net.minecraft.client.render.Tessellator
 import net.minecraft.client.render.VertexFormat
 import net.minecraft.client.render.VertexFormats
 
-class TestElement : InteractiveElement, RendererElement {
-
-    override var enabled: Boolean = true
-    override var interactive: Boolean = true
+class TestElement : AbstractElement() {
 
     override var size: V3 = 20 x 20
-    override var align: V3 = 0 x 0
-    override var origin: V3 = 0 x 0
-    override var offset: V3 = 0 x 0
-    override var rotation: V3 = 0 x 0
-    override var location: V3 = 0 x 0
 
     override fun render(matrix: Matrix) {
         val positionMatrix = matrix.peek().positionMatrix
@@ -42,23 +29,4 @@ class TestElement : InteractiveElement, RendererElement {
 
         tesselator.draw()
     }
-
-
-    override fun onHover(handler: HoverHandler) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onLeftClick(handler: ClickHandler) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onRightClick(handler: ClickHandler) {
-        TODO("Not yet implemented")
-    }
-
-    override fun isHovered(mouseX: Double, mouseY: Double) {
-        TODO("Not yet implemented")
-    }
-
-    override val children: MutableList<Element> = mutableListOf()
 }
