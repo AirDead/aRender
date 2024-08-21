@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate", "SpellCheckingInspection", "ConstPropertyName", "unused")
+
 package dev.airdead.common.animation
 
 import kotlin.math.cos

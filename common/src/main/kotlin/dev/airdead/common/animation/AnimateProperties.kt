@@ -5,6 +5,13 @@ import dev.airdead.common.math.Rotation
 import dev.airdead.common.math.V2
 import dev.airdead.common.math.V3
 
+/**
+ * Container for animation properties.
+ * This class contains all annotated with [Animatable] fields for specific class
+ *
+ * @see Animatable
+ */
+@Suppress("SpellCheckingInspection")
 data class AnimateProperties(
     val v2: List<V2>,
     val v3: List<V3>,

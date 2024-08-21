@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package dev.airdead.common.math
 
 import org.joml.Matrix3f

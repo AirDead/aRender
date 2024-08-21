@@ -21,16 +21,16 @@ class CraftMatrix(
         }
     }
 
-    override fun transform(x: Number, y: Number, z: Number) = matrix.translate(x.toDouble(), y.toDouble(), z.toDouble())
-    override fun scale(x: Number, y: Number, z: Number) = matrix.translate(x.toDouble(), y.toDouble(), z.toDouble())
-    override fun translate(x: Number, y: Number, z: Number) = matrix.translate(x.toDouble(), y.toDouble(), z.toDouble())
-    override fun multiply(quaternionf: Quaternionf, x: Number, y: Number, z: Number) = matrix.multiply(quaternionf, x.toFloat(), y.toFloat(), z.toFloat())
+    override fun transform(x: Number, y: Number, z: Number) = matrix.translate(x as Double, y as Double, z as Double)
+    override fun scale(x: Number, y: Number, z: Number) = matrix.translate(x as Double, y as Double, z as Double)
+    override fun translate(x: Number, y: Number, z: Number) = matrix.translate(x as Double, y as Double, z as Double)
+    override fun multiply(quaternionf: Quaternionf, x: Number, y: Number, z: Number) = matrix.multiply(quaternionf, x as Float, y as Float, z as Float)
 
     override fun rotate(angle: Number, x: Number, y: Number, z: Number) {
         val angle = angle.toFloat()
-        val x = x.toFloat()
-        val y = y.toFloat()
-        val z = z.toFloat()
+        val x = x as Float
+        val y = y as Float
+        val z = z as Float
         val matrix4f = matrix.peek().positionMatrix
 
         val c = cos(angle)
