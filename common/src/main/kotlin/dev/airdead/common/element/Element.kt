@@ -3,12 +3,12 @@ package dev.airdead.common.element
 import dev.airdead.common.math.V3
 
 /**
- * Represents a basic element
+ * Represents a basic element.
  */
 interface Element {
 
     /**
-     * Element size
+     * Element size.
      */
     var size: V3
 

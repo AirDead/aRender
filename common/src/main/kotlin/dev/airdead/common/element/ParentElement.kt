@@ -1,7 +1,7 @@
 package dev.airdead.common.element
 
 /**
- * Interface representing a parent element
+ * Interface representing a parent element.
  */
 interface ParentElement : Element {
 
@@ -46,6 +46,7 @@ interface ParentElement : Element {
      *
      * @param T The type of the child element.
      * @param element The child element to be added.
+     *
      * @return The added child element.
      */
     operator fun <T : Element> plus(element: T): T {

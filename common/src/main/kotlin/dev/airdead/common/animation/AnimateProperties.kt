@@ -7,7 +7,7 @@ import dev.airdead.common.math.V3
 
 /**
  * Container for animation properties.
- * This class contains all annotated with [Animatable] fields for specific class
+ * This class contains all annotated with [Animatable] fields for specific class.
  *
  * @see Animatable
  */

@@ -7,13 +7,15 @@ import dev.airdead.common.math.Matrix
 import dev.airdead.common.math.V3
 
 /**
- * Represents element for render
+ * Represents element for render.
+ *
+ * For render in world use [WorldElement]
  */
 interface RendererElement : ParentElement {
 
     /**
      * Indicates whether the element is enabled.
-     * When set to false, the element is not render
+     * When set to false, the element is not render.
      */
     var enabled: Boolean
 
@@ -28,14 +30,43 @@ interface RendererElement : ParentElement {
      * @param duration The duration of the animation.
      * @param easing The easing function for the animation.
      * @param updateProperties A lambda to update the properties of the element.
-     * @return The animation chain.
+     *
+     * @return The animation chain
      */
     fun animate(duration: Double, easing: Easing = Easings.NONE, updateProperties: RendererElement.() -> Unit): AnimationChain
 
     /**
-     * Render the element
+     * Execute some action before render.
      *
-     * @param matrix The matrix
+     * @param action Action.
+     */
+    fun beforeRender(action: () -> Unit)
+
+    /**
+     * Execute some action after render.
+     *
+     * @param action Action.
+     */
+    fun afterRender(action: () -> Unit)
+
+    /**
+     * Execute some action before transform.
+     *
+     * @param action Action.
+     */
+    fun beforeTransform(action: () -> Unit)
+
+    /**
+     * Execute some action after transform.
+     *
+     * @param action Action.
+     */
+    fun afterTransform(action: () -> Unit)
+
+    /**
+     * Render the element.
+     *
+     * @param matrix The matrix.
      */
     fun render(matrix: Matrix)
 }

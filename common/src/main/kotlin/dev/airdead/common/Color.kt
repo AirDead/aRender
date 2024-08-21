@@ -3,14 +3,14 @@ package dev.airdead.common
 import org.jetbrains.annotations.Range
 
 /**
- * Class for coloring elements
+ * Class for coloring elements.
  *
- * @param red Red value
- * @param green Green value
- * @param blue Blue value
- * @param alpha Percentage of transparency
+ * @param red Red value.
+ * @param green Green value.
+ * @param blue Blue value.
+ * @param alpha Percentage of transparency.
  *
- * @throws IllegalArgumentException If some value is not in it range
+ * @throws IllegalArgumentException If some value is not in it range.
  */
 @Suppress("LeakingThis")
 open class Color(
@@ -54,9 +54,9 @@ open class Color(
     }
 
     /**
-     * Copy values from another color to current instance
+     * Copy values from another color to current instance.
      *
-     * @param another Another [Color]
+     * @param another Another [Color].
      */
     fun write(another: Color) {
         another.red = this.red
@@ -66,7 +66,7 @@ open class Color(
     }
 
     /**
-     * Int-value representation of [Color]
+     * Int-value representation of [Color].
      */
     fun toInt(): Int {
         val alphaInt = (alpha * 255).toInt().coerceIn(0, 255)
@@ -74,23 +74,23 @@ open class Color(
     }
 
     /**
-     * Copy current instance of [Color] with it values
+     * Copy current instance of [Color] with it values.
      *
-     * @return New instance of [Color]
+     * @return New instance of [Color].
      */
     fun copy(): Color {
         return Color(this.red, this.green, this.blue, this.alpha)
     }
 
     /**
-     * Finding the difference in the values of two colors relative to [progress]
+     * Finding the difference in the values of two colors relative to [progress].
      *
-     * @param other Second [Color]
-     * @param progress Progress value
+     * @param other Second [Color].
+     * @param progress Progress value.
      *
-     * @return New instance of [Color]
+     * @return New instance of [Color].
      *
-     * @throws IllegalArgumentException If [progress] is not in it range
+     * @throws IllegalArgumentException If [progress] is not in it range.
      */
     fun interpolate(other: Color, progress: @Range(from = 0, to = 1) Double): Color {
         if (progress !in 0.0..1.0) throw IllegalArgumentException("Progress is not in 0.0..1.0 range!")

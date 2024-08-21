@@ -7,9 +7,9 @@ import dev.airdead.common.math.V2
 import dev.airdead.common.math.V3
 
 /**
- * Annotate fields in your [RendererElement] class to applie animation to it
+ * Annotate fields in your [RendererElement] class to applie animation to it.
  *
- * You can annotate only field with type: [V2], [V3], [Color], [Rotation]
+ * You can annotate only field with type: [V2], [V3], [Color], [Rotation].
  */
 @Suppress("unused", "SpellCheckingInspection")
 @Target(AnnotationTarget.FIELD)

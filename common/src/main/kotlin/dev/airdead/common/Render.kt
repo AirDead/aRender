@@ -7,24 +7,24 @@ import dev.airdead.common.math.V2
 abstract class Render {
 
     /**
-     * All element for render
+     * All element for render.
      */
     abstract val elements: MutableList<RendererElement>
 
     /**
-     * Init render system
+     * Init render system.
      */
     abstract fun init()
 
     /**
-     * Render all elements
+     * Render all elements.
      *
-     * @param matrix Matrix for render
+     * @param matrix Matrix for render.
      */
     abstract fun render(matrix: Matrix)
 
     /**
-     * Current mouse position
+     * Current mouse position.
      */
     abstract val mouse: V2
 
@@ -38,16 +38,16 @@ abstract class Render {
     abstract fun isMouseButtonClicked(button: Int): Boolean
 
     /**
-     * Add element to rendering
+     * Add element to rendering.
      *
-     * @param element Element for render
+     * @param element Element for render.
      */
     abstract fun addElement(element: RendererElement)
 
     /**
-     * Remove element from rendering
+     * Remove element from rendering.
      *
-     * @param element Element for removing
+     * @param element Element for removing.
      */
     abstract fun removeElement(element: RendererElement)
 }

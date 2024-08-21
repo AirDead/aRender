@@ -27,7 +27,7 @@ class CraftMatrix(
     override fun multiply(quaternionf: Quaternionf, x: Number, y: Number, z: Number) = matrix.multiply(quaternionf, x as Float, y as Float, z as Float)
 
     override fun rotate(angle: Number, x: Number, y: Number, z: Number) {
-        val angle = angle.toFloat()
+        val angle = angle as Float
         val x = x as Float
         val y = y as Float
         val z = z as Float

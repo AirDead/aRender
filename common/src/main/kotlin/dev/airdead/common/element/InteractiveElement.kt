@@ -4,13 +4,13 @@ import dev.airdead.common.handler.ClickHandler
 import dev.airdead.common.handler.HoverHandler
 
 /**
- * Represents interactive element
+ * Represents interactive element.
  */
 interface InteractiveElement : ParentElement {
 
     /**
      * Indicates whether the element is interactive.
-     * When set to false, the element is not interactive
+     * When set to false, the element is not interactive.
      */
     var interactive: Boolean
 
