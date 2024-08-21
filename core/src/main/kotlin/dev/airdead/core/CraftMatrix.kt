@@ -10,8 +10,16 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 @Suppress("NAME_SHADOWING", "SpellCheckingInspection")
-class CraftMatrix : Matrix {
-    private val matrix = MatrixStack()
+class CraftMatrix(
+    private val matrix: MatrixStack = MatrixStack()
+) : Matrix {
+
+    companion object {
+        @JvmStatic
+        fun fromStack(stack: MatrixStack): CraftMatrix {
+            return CraftMatrix(stack)
+        }
+    }
 
     override fun transform(x: Number, y: Number, z: Number) = matrix.translate(x.toDouble(), y.toDouble(), z.toDouble())
     override fun scale(x: Number, y: Number, z: Number) = matrix.translate(x.toDouble(), y.toDouble(), z.toDouble())

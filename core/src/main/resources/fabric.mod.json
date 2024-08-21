@@ -17,13 +17,13 @@
 	"entrypoints": {
 		"main": [
 			{
-				"value": "com.example.TemplateMod",
+				"value": "dev.airdead.core.test.Test",
 				"adapter": "kotlin"
 			}
 		],
 		"client": [
 			{
-				"value": "com.example.TemplateModClient",
+				"value": "dev.airdead.core.test.Test",
 				"adapter": "kotlin"
 			}
 		]

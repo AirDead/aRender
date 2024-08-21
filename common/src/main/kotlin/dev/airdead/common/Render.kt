@@ -1,6 +1,7 @@
 package dev.airdead.common
 
 import dev.airdead.common.element.RendererElement
+import dev.airdead.common.math.Matrix
 import dev.airdead.common.math.V2
 
 abstract class Render {
@@ -14,6 +15,13 @@ abstract class Render {
      * Init render system
      */
     abstract fun init()
+
+    /**
+     * Render all elements
+     *
+     * @param matrix Matrix for render
+     */
+    abstract fun render(matrix: Matrix)
 
     /**
      * Current mouse position
