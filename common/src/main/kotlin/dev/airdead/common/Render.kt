@@ -1,10 +1,23 @@
 package dev.airdead.common
 
+import dev.airdead.common.animation.AnimationManager
 import dev.airdead.common.element.RendererElement
 import dev.airdead.common.math.Matrix
 import dev.airdead.common.math.V2
 
+@Suppress("LeakingThis")
 abstract class Render {
+
+    companion object {
+        lateinit var instance: Render
+            private set
+    }
+
+    init {
+        instance = this
+    }
+
+    abstract val animationManager: AnimationManager
 
     /**
      * All element for render.

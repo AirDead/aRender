@@ -25,12 +25,12 @@ interface AnimationChain {
     /**
      * The number of times the animation chain should repeat.
      */
-    var repeatCount: Boolean
+    var repeatCount: Int
 
     /**
      * The current repeat count of the animation chain.
      */
-    var currentRepeat: Boolean
+    var currentRepeat: Int
 
     /**
      * Indicates whether the animation chain has been cancelled.

@@ -12,6 +12,7 @@ repositories {
 dependencies {
     compileOnly("org.joml:joml:1.10.8")
     compileOnly("org.jetbrains:annotations:24.1.0")
+    implementation(kotlin("reflect"))
 }
 
 kotlin {

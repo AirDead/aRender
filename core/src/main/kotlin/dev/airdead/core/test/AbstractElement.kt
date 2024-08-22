@@ -1,17 +1,20 @@
 package dev.airdead.core.test
 
 import dev.airdead.common.animation.Animatable
-import dev.airdead.common.animation.AnimationChain
-import dev.airdead.common.animation.Easing
 import dev.airdead.common.element.Element
 import dev.airdead.common.element.InteractiveElement
 import dev.airdead.common.element.RendererElement
+import dev.airdead.common.element.WorldElement
 import dev.airdead.common.handler.ClickHandler
 import dev.airdead.common.handler.HoverHandler
 import dev.airdead.common.math.V3
 import dev.airdead.common.math.x
 
-abstract class AbstractElement : InteractiveElement, RendererElement {
+/**
+ * Abstract element with basic logic. You can use it for render in hud or world.
+ */
+abstract class AbstractElement : InteractiveElement, RendererElement, WorldElement {
+
     override val children: MutableList<Element> = mutableListOf()
 
     override var enabled: Boolean = true
@@ -30,20 +33,20 @@ abstract class AbstractElement : InteractiveElement, RendererElement {
     @Animatable
     override var location: V3 = 0 x 0
 
-    private var onHover: HoverHandler? = null
-    private var onLeftClick: ClickHandler? = null
-    private var onRightClick: ClickHandler? = null
+    private var onHover = mutableListOf<HoverHandler>()
+    private var onLeftClick = mutableListOf<ClickHandler>()
+    private var onRightClick = mutableListOf<ClickHandler>()
 
     override fun onHover(handler: HoverHandler) {
-        this.onHover = handler
+        this.onHover.add(handler)
     }
 
     override fun onLeftClick(handler: ClickHandler) {
-        this.onLeftClick = handler
+        this.onLeftClick.add(handler)
     }
 
     override fun onRightClick(handler: ClickHandler) {
-        this.onRightClick = handler
+        this.onRightClick.add(handler)
     }
 
     override fun afterRender(action: () -> Unit) {
@@ -59,14 +62,6 @@ abstract class AbstractElement : InteractiveElement, RendererElement {
     }
 
     override fun beforeTransform(action: () -> Unit) {
-        TODO("Not yet implemented")
-    }
-
-    override fun animate(
-        duration: Double,
-        easing: Easing,
-        updateProperties: RendererElement.() -> Unit
-    ): AnimationChain {
         TODO("Not yet implemented")
     }
 

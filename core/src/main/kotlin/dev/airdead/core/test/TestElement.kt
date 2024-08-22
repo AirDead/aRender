@@ -1,6 +1,8 @@
 package dev.airdead.core.test
 
 import com.mojang.blaze3d.systems.RenderSystem
+import dev.airdead.common.Color
+import dev.airdead.common.animation.Animatable
 import dev.airdead.common.math.Matrix
 import dev.airdead.common.math.V3
 import dev.airdead.common.math.x
@@ -12,6 +14,9 @@ import net.minecraft.client.render.VertexFormats
 class TestElement : AbstractElement() {
 
     override var size: V3 = 20 x 20
+
+    @Animatable
+    val myColor = Color.WHITE
 
     override fun render(matrix: Matrix) {
         val positionMatrix = matrix.peek().positionMatrix

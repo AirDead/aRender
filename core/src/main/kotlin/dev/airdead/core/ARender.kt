@@ -3,15 +3,19 @@
 package dev.airdead.core
 
 import dev.airdead.common.Render
+import dev.airdead.common.animation.AnimationManager
 import dev.airdead.common.element.RendererElement
 import dev.airdead.common.math.Matrix
 import dev.airdead.common.math.V2
+import dev.airdead.core.animation.CraftAnimationManager
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback
 import net.minecraft.client.MinecraftClient
 import org.lwjgl.glfw.GLFW
 
 object ARender : Render() {
+
+    override val animationManager: AnimationManager = CraftAnimationManager
 
     private lateinit var instance: MinecraftClient
 

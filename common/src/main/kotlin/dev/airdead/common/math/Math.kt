@@ -20,6 +20,18 @@ open class V2(
 
     open fun length() = sqrt(doubleX * doubleX + doubleY * doubleY)
     open fun normalize() = this / length()
+
+    /**
+     * Interpolates between this vector and the given vector by the specified progress.
+     *
+     * @param other The vector to interpolate towards.
+     * @param progress The interpolation progress, where 0.0 represents this vector and 1.0 represents the other vector.
+     * @return A new vector that is the result of the interpolation.
+     */
+    fun interpolate(other: V2, progress: Double) = V2(
+        doubleX + (other.doubleX - doubleX) * progress,
+        doubleY + (other.doubleY - doubleY) * progress
+    )
 }
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
@@ -39,13 +51,48 @@ open class V3(
 
     override fun length() = sqrt(doubleX * doubleX + doubleY * doubleY + doubleZ * doubleZ)
     override fun normalize() = this / length()
+
+    /**
+     * Interpolates between this vector and the given vector by the specified progress.
+     *
+     * @param other The vector to interpolate towards.
+     * @param progress The interpolation progress, where 0.0 represents this vector and 1.0 represents the other vector.
+     * @return A new vector that is the result of the interpolation.
+     */
+    fun interpolate(other: V3, progress: Double) = V3(
+        doubleX + (other.doubleX - doubleX) * progress,
+        doubleY + (other.doubleY - doubleY) * progress,
+        doubleZ + (other.doubleZ - doubleZ) * progress
+    )
 }
 
-data class Rotation(
-    var pitch: Float = 0f,
-    var yaw: Float = 0f,
-    var roll: Float = 0f
-)
+/**
+ * Represents a rotation in degrees.
+ *
+ * @property degrees The rotation in degrees.
+ */
+@Suppress("MemberVisibilityCanBePrivate")
+open class Rotation(
+    var degrees: Float
+) {
+    /**
+     * Creates a copy of this rotation.
+     *
+     * @return A new rotation that is a copy of this rotation.
+     */
+    fun copy() = Rotation(degrees)
+
+    /**
+     * Interpolates between this rotation and the given rotation by the specified progress.
+     *
+     * @param other The rotation to interpolate towards.
+     * @param progress The interpolation progress, where 0.0 represents this rotation and 1.0 represents the other rotation.
+     * @return A new rotation that is the result of the interpolation.
+     */
+    fun interpolate(other: Rotation, progress: Double) = Rotation(
+        degrees + (other.degrees - degrees) * progress.toFloat()
+    )
+}
 
 /**
  * Creates a 3-dimensional vector from two numbers, with the z-coordinate set to 0.0.
