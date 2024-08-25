@@ -1,48 +1,19 @@
 {
 	"schemaVersion": 1,
-	"id": "template-mod",
+	"id": "arender",
 	"version": "${version}",
-	"name": "Template Mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "aRender",
+	"description": "Api for rendering user interface!",
 	"authors": [
-		"Me!"
+		"AxieFeat",
+		"Airdead"
 	],
-	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
-	},
 	"license": "CC0-1.0",
-	"icon": "assets/template-mod/icon.png",
 	"environment": "*",
-	"entrypoints": {
-		"main": [
-			{
-				"value": "dev.airdead.core.test.Test",
-				"adapter": "kotlin"
-			}
-		],
-		"client": [
-			{
-				"value": "dev.airdead.core.test.Test",
-				"adapter": "kotlin"
-			}
-		]
-	},
-	"mixins": [
-		"template-mod.mixins.json",
-		{
-			"config": "template-mod.client.mixins.json",
-			"environment": "client"
-		}
-	],
 	"depends": {
-		"fabricloader": ">=0.16.2",
-		"minecraft": "~1.21.1",
-		"java": ">=21",
-		"fabric-api": "*",
-		"fabric-language-kotlin": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
 	}
 }
