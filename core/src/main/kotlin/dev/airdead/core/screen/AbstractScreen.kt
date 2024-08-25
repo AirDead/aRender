@@ -1,17 +1,18 @@
-package dev.airdead.core.utility.screen
+package dev.airdead.core.screen
 
-import dev.airdead.common.utility.screen.Matrix
+import dev.airdead.common.Matrix
 import dev.airdead.common.utility.input.Keyboard
 import dev.airdead.core.utility.ClientAPI
 import dev.airdead.core.utility.client.CraftResolution
 import dev.airdead.core.utility.input.CraftKeyboard.toInt
 import dev.airdead.core.utility.input.CraftKeyboard.toModifiers
+import dev.airdead.core.CraftMatrix
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.text.Text
 
 @Suppress("MemberVisibilityCanBePrivate", "SpellCheckingInspection", "CanBeParameter", "unused")
-abstract class CraftScreen(
+abstract class AbstractScreen(
     val restoreCurrentGuiOnClose: Boolean = false,
     open var newGuiScale: Int = -1,
     open var unlocalizedName: String? = null

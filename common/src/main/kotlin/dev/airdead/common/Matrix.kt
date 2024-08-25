@@ -1,6 +1,6 @@
 @file:Suppress("SpellCheckingInspection")
 
-package dev.airdead.common.utility.screen
+package dev.airdead.common
 
 import org.joml.Matrix3f
 import org.joml.Matrix4f

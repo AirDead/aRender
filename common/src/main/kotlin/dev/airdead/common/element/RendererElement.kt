@@ -4,7 +4,7 @@ import dev.airdead.common.animation.AnimationChain
 import dev.airdead.common.animation.AnimationExecutable
 import dev.airdead.common.animation.Easing
 import dev.airdead.common.animation.Easings
-import dev.airdead.common.utility.screen.Matrix
+import dev.airdead.common.Matrix
 import dev.airdead.common.misc.location.V3
 
 /**

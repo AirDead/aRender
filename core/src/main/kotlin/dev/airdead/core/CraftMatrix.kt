@@ -1,7 +1,7 @@
-package dev.airdead.core.utility.screen
+package dev.airdead.core
 
-import dev.airdead.common.utility.screen.Matrix
-import dev.airdead.common.utility.screen.MatrixEntry
+import dev.airdead.common.Matrix
+import dev.airdead.common.MatrixEntry
 import net.minecraft.client.util.math.MatrixStack
 import org.joml.Matrix3f
 import org.joml.Matrix4f

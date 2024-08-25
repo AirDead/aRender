@@ -1,4 +1,4 @@
-package dev.airdead.core.utility.screen
+package dev.airdead.core.screen
 
 import dev.airdead.core.utility.client.CraftResolution
 import kotlin.math.min
