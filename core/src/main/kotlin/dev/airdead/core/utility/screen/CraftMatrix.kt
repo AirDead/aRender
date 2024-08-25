@@ -1,7 +1,7 @@
-package dev.airdead.core
+package dev.airdead.core.utility.screen
 
-import dev.airdead.common.math.Matrix
-import dev.airdead.common.math.MatrixEntry
+import dev.airdead.common.utility.screen.Matrix
+import dev.airdead.common.utility.screen.MatrixEntry
 import net.minecraft.client.util.math.MatrixStack
 import org.joml.Matrix3f
 import org.joml.Matrix4f
@@ -90,6 +90,19 @@ class CraftMatrix(
 
     override fun multiplyPositionMatrix(matrix: Matrix4f) {
         peek().positionMatrix.mul(matrix)
+    }
+
+    object Compat {
+        private val stack = mutableListOf<Matrix>()
+
+        fun <R> runLegacyMethod(matrix: Matrix, block: () -> R): R {
+            stack.add(matrix)
+            return block().also {
+                stack.removeAt(stack.lastIndex)
+            }
+        }
+
+        fun get(): Matrix = stack.lastOrNull() ?: CraftMatrix()
     }
 }
 

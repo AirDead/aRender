@@ -15,7 +15,7 @@ interface AnimationChain {
     /**
      * The initial animation to start the chain.
      */
-    val initialAnimation: Animation<AnimateProperties>
+    val initialAnimation: Animation
 
     /**
      * Indicates whether the animation chain should loop.
@@ -45,7 +45,7 @@ interface AnimationChain {
      * @param updateProperties A lambda to update the properties of the element.
      * @return The updated AnimationChain.
      */
-    fun then(duration: Double, easing: Easing = Easings.NONE, updateProperties: RendererElement.() -> Unit): AnimationChain
+    fun then(duration: Double, easing: Easing = Easings.NONE, updateProperties: AnimationExecutable.() -> Unit): AnimationChain
 
     /**
      * Adds a new animation to the chain with the specified duration and no easing.

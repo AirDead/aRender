@@ -6,10 +6,10 @@ import dev.airdead.common.element.RendererElement
 @Suppress("MemberVisibilityCanBePrivate")
 class CraftAnimationChain(
     override val element: RendererElement,
-    override val initialAnimation: Animation<AnimateProperties>
+    override val initialAnimation: Animation
 ) : AnimationChain {
 
-    val animations = mutableListOf<Animation<AnimateProperties>>().apply { add(initialAnimation) }
+    val animations = mutableListOf<Animation>().apply { add(initialAnimation) }
 
     override var loop = false
 
@@ -21,12 +21,15 @@ class CraftAnimationChain(
 
     private var isCancelled = false
 
-    override fun then(duration: Double, easing: Easing, updateProperties: RendererElement.() -> Unit): AnimationChain {
-        val lastState = animations.last().endState
-        updateProperties(element)
-        val newEndState = CraftAnimationManager.animationProperties(element)
-        val animation = CraftAnimation(lastState, newEndState, duration * 20, easing::ease, initialAnimation.applyProperties)
+    override fun then(duration: Double, easing: Easing, updateProperties: AnimationExecutable.() -> Unit): AnimationChain {
+        val executable = CraftAnimationExecutable()
+
+        executable.updateProperties()
+
+        val animation = CraftAnimation(executable.properties, duration * 20, easing::ease)
+
         animations.add(animation)
+
         return this
     }
 

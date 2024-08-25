@@ -1,4 +1,4 @@
-package dev.airdead.common
+package dev.airdead.common.misc
 
 import org.jetbrains.annotations.Range
 
@@ -18,7 +18,7 @@ open class Color(
     open var green: @Range(from = 0, to = 255) Int = 0,
     open var blue: @Range(from = 0, to = 255) Int = 0,
     open var alpha: @Range(from = 0, to = 1) Double = 1.0
-) {
+) : Interpolatable {
 
     companion object {
         @JvmStatic val BLACK = Color(0, 0, 0)
@@ -92,14 +92,18 @@ open class Color(
      *
      * @throws IllegalArgumentException If [progress] is not in it range.
      */
-    fun interpolate(other: Color, progress: @Range(from = 0, to = 1) Double): Color {
+    override fun interpolate(other: Interpolatable, progress: @Range(from = 0, to = 1) Double) {
         if (progress !in 0.0..1.0) throw IllegalArgumentException("Progress is not in 0.0..1.0 range!")
 
-        return Color(
-            (red + (other.red - red) * progress).toInt(),
-            (green + (other.green - green) * progress).toInt(),
-            (blue + (other.blue - blue) * progress).toInt(),
-            alpha + (other.alpha - alpha) * progress
-        )
+        when(other) {
+            is Color -> {
+                this.red = (red + (other.red - red) * progress).toInt()
+                this.green = (green + (other.green - green) * progress).toInt()
+                this.blue = (blue + (other.blue - blue) * progress).toInt()
+                this.alpha = alpha + (other.alpha - alpha) * progress
+            }
+
+            else -> throw NullPointerException("Incorrect parameter. Interpolate with other Color instance!")
+        }
     }
 }

@@ -1,6 +1,7 @@
 package dev.airdead.common.element
 
-import dev.airdead.common.math.V3
+import dev.airdead.common.misc.Rotation
+import dev.airdead.common.misc.location.V3
 
 /**
  * Represents a basic element.
@@ -30,6 +31,6 @@ interface Element {
     /**
      * The rotation of the element.
      */
-    var rotation: V3
+    var rotation: Rotation
 
 }

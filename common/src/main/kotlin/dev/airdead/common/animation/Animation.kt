@@ -2,20 +2,13 @@ package dev.airdead.common.animation
 
 /**
  * A class representing an animation that interpolates between two states over a specified duration.
- *
- * @param T The type of the states being interpolated.
  */
-interface Animation<T> {
+interface Animation {
 
     /**
      * The initial state of the animation.
      */
-    val startState: T
-
-    /**
-     * The final state of the animation.
-     */
-    val endState: T
+    val properties: AnimateProperties
 
     /**
      * The duration of the animation in seconds.
@@ -26,11 +19,6 @@ interface Animation<T> {
      * A function that defines the easing curve of the animation.
      */
     val easing: (Double) -> Double
-
-    /**
-     * A function that applies the interpolated properties to the target.
-     */
-    val applyProperties: (T) -> Unit
 
     /**
      * The elapsed time since the start of the animation.
@@ -50,5 +38,5 @@ interface Animation<T> {
      *
      * @return The current instance of the [Animation] class.
      */
-    fun reset(): Animation<T>
+    fun reset(): Animation
 }

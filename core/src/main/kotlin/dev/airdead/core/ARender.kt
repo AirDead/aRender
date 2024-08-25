@@ -3,21 +3,17 @@
 package dev.airdead.core
 
 import dev.airdead.common.Render
-import dev.airdead.common.animation.AnimationManager
 import dev.airdead.common.element.RendererElement
-import dev.airdead.common.math.Matrix
-import dev.airdead.common.math.V2
-import dev.airdead.core.animation.CraftAnimationManager
+import dev.airdead.common.utility.screen.Matrix
+import dev.airdead.common.misc.location.V2
+import dev.airdead.core.utility.ClientAPI
+import dev.airdead.core.utility.screen.CraftMatrix
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback
 import net.minecraft.client.MinecraftClient
 import org.lwjgl.glfw.GLFW
 
 object ARender : Render() {
-
-    override val animationManager: AnimationManager = CraftAnimationManager
-
-    private lateinit var instance: MinecraftClient
 
     var initialized = false
         private set(value) {
@@ -31,8 +27,6 @@ object ARender : Render() {
     override val elements: MutableList<RendererElement> = mutableListOf()
 
     override fun init() {
-        instance = MinecraftClient.getInstance()
-
         ClientTickEvents.START_CLIENT_TICK.register(::onClientTick)
     }
 
@@ -70,9 +64,9 @@ object ARender : Render() {
         // TODO Update elements
     }
 
-    override val mouse: V2 = V2(instance.mouse.x, instance.mouse.y)
+    override val mouse: V2 = V2(ClientAPI.minecraft.mouse.x, ClientAPI.minecraft.mouse.y)
 
-    override fun isMouseButtonClicked(button: Int): Boolean = GLFW.glfwGetMouseButton(instance.window.handle, button) == GLFW.GLFW_PRESS
+    override fun isMouseButtonClicked(button: Int): Boolean = GLFW.glfwGetMouseButton(ClientAPI.minecraft.window.handle, button) == GLFW.GLFW_PRESS
 
     override fun addElement(element: RendererElement) {
         elements.add(element)

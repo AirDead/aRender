@@ -1,23 +1,19 @@
 package dev.airdead.common
 
-import dev.airdead.common.animation.AnimationManager
 import dev.airdead.common.element.RendererElement
-import dev.airdead.common.math.Matrix
-import dev.airdead.common.math.V2
+import dev.airdead.common.utility.screen.Matrix
+import dev.airdead.common.misc.location.V2
 
-@Suppress("LeakingThis")
+@DslMarker
+annotation class SimpleDsl1
+@DslMarker
+annotation class SimpleDsl2
+@DslMarker
+annotation class SimpleDsl3
+@DslMarker
+annotation class SimpleDsl4
+
 abstract class Render {
-
-    companion object {
-        lateinit var instance: Render
-            private set
-    }
-
-    init {
-        instance = this
-    }
-
-    abstract val animationManager: AnimationManager
 
     /**
      * All element for render.

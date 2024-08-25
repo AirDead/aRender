@@ -2,6 +2,8 @@ package dev.airdead.common.element
 
 import dev.airdead.common.handler.ClickHandler
 import dev.airdead.common.handler.HoverHandler
+import org.joml.Matrix4f
+import org.joml.Vector4f
 
 /**
  * Represents interactive element.
@@ -13,6 +15,13 @@ interface InteractiveElement : ParentElement {
      * When set to false, the element is not interactive.
      */
     var interactive: Boolean
+
+    /**
+     * Is element is hovered
+     *
+     * @see onHover
+     */
+    var hovered: Boolean
 
     /**
      * Sets the hover handler for the element.
@@ -42,5 +51,15 @@ interface InteractiveElement : ParentElement {
      * @param mouseY The Y coordinate of the mouse.
      * @return True if the element is hovered over, false otherwise.
      */
-    fun isHovered(mouseX: Double, mouseY: Double)
+    fun isHovered(mouseX: Double, mouseY: Double): Boolean
+
+    /**
+     * Update hover state.
+     *
+     * @param mouseMatrix Mouse matrix.
+     * @param mouseVector Mouse vector.
+     *
+     * @see hovered
+     */
+    fun updateHoverState(mouseMatrix: Matrix4f, mouseVector: Vector4f)
 }
