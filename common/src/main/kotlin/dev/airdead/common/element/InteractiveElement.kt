@@ -52,14 +52,4 @@ interface InteractiveElement : ParentElement {
      * @return True if the element is hovered over, false otherwise.
      */
     fun isHovered(mouseX: Double, mouseY: Double): Boolean
-
-    /**
-     * Update hover state.
-     *
-     * @param mouseMatrix Mouse matrix.
-     * @param mouseVector Mouse vector.
-     *
-     * @see hovered
-     */
-    fun updateHoverState(mouseMatrix: Matrix4f, mouseVector: Vector4f)
 }

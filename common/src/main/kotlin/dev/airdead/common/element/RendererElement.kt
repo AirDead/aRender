@@ -68,6 +68,7 @@ interface RendererElement : ParentElement {
      * Render the element.
      *
      * @param matrix The matrix.
+     * @param tickDelta Tick delta.
      */
-    fun render(matrix: Matrix)
+    fun render(matrix: Matrix, tickDelta: Float)
 }

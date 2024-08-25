@@ -5,6 +5,8 @@ package dev.airdead.common.element
  */
 interface ParentElement : Element {
 
+    var lastParent: Element?
+
     /**
      * The list of child elements.
      */
@@ -17,6 +19,7 @@ interface ParentElement : Element {
      */
     fun addChild(vararg elements: Element) {
         children.addAll(elements)
+        lastParent = elements.last()
     }
 
     /**

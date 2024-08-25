@@ -29,8 +29,8 @@ object ARender : Render() {
         ClientTickEvents.START_CLIENT_TICK.register(::onClientTick)
     }
 
-    override fun render(matrix: Matrix) {
-        elements.forEach { it.render(matrix) }
+    override fun render(matrix: Matrix, tickDelta: Float) {
+        elements.forEach { it.render(matrix, tickDelta) }
     }
 
     /**
@@ -47,8 +47,8 @@ object ARender : Render() {
      * The callback is responsible for rendering the HUD.
      */
     private fun registerCallbacks() {
-        HudRenderCallback.EVENT.register { drawContext, _ ->
-            render(CraftMatrix.fromStack(drawContext.matrices))
+        HudRenderCallback.EVENT.register { drawContext, tickDelta ->
+            render(CraftMatrix.fromStack(drawContext.matrices), tickDelta)
         }
     }
 
@@ -63,7 +63,8 @@ object ARender : Render() {
         // TODO Update elements
     }
 
-    override val mouse: V2 = V2(ClientAPI.minecraft.mouse.x, ClientAPI.minecraft.mouse.y)
+    override val mouse: V2
+        get() = V2(ClientAPI.minecraft.mouse.x, ClientAPI.minecraft.mouse.y)
 
     override fun isMouseButtonClicked(button: Int): Boolean = GLFW.glfwGetMouseButton(ClientAPI.minecraft.window.handle, button) == GLFW.GLFW_PRESS
 

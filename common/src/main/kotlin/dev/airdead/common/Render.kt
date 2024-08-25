@@ -28,8 +28,9 @@ abstract class Render {
      * Render all elements.
      *
      * @param matrix Matrix for render.
+     * @param tickDelta Tick delta.
      */
-    abstract fun render(matrix: Matrix)
+    abstract fun render(matrix: Matrix, tickDelta: Float)
 
     /**
      * Current mouse position.

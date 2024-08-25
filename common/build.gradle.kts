@@ -2,8 +2,8 @@ plugins {
     kotlin("jvm") version "2.0.0"
 }
 
-group = "dev.airdead.arender"
-version = "1.0.0"
+group = rootProject.group
+version = rootProject.version
 
 repositories {
     mavenCentral()
@@ -23,7 +23,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = project.group.toString()
-            artifactId = "common"
+            artifactId = project.name
             version = project.version.toString()
 
             from(components["java"])
