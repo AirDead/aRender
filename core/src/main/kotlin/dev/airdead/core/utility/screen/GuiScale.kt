@@ -3,6 +3,7 @@ package dev.airdead.core.utility.screen
 import dev.airdead.core.utility.client.CraftResolution
 import kotlin.math.min
 
+@Suppress("unused")
 enum class GuiScale {
     AUTO,
     SMALL,

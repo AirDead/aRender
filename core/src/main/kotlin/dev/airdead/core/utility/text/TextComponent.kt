@@ -7,6 +7,7 @@ import net.minecraft.text.StringVisitable.Visitor
 import net.minecraft.util.Formatting
 import java.util.*
 
+@Suppress("MemberVisibilityCanBePrivate", "unused", "UNCHECKED_CAST")
 class TextComponent : Text {
     lateinit var component: MutableText
         private set
@@ -92,11 +93,7 @@ class TextComponent : Text {
     }
 
     private fun reInstance() {
-        //#if MC>=11900
         component = Text.literal(text.formatIf(formatted))
-        //#else
-        //$$ component = LiteralText(text.formatIf(formatted))
-        //#endif
 
         reInstanceClick()
         reInstanceHover()
@@ -110,13 +107,7 @@ class TextComponent : Text {
 
         val event = ClickEvent(clickAction, clickValue.formatIf(formatted))
 
-        //#if MC>=11600
         component.style = component.style.withClickEvent(event)
-        //#elseif MC>=11202
-        //$$ component.style.clickEvent = event
-        //#else
-        //$$ component.chatStyle.chatClickEvent = event
-        //#endif
     }
 
     private fun reInstanceHover() {
@@ -169,22 +160,14 @@ class TextComponent : Text {
         }
 
         companion object {
-            private val colorToFormatChar = Formatting.values().mapNotNull { format ->
+            private val colorToFormatChar = Formatting.entries.mapNotNull { format ->
                 TextColor.fromFormatting(format)?.let { it to format }
             }.toMap()
         }
     }
-    //#endif
 
-    // **********************
-    // * METHOD DELEGATIONS *
-    // **********************
-
-    //#if MC>=11900
     override fun getContent(): TextContent = component.content
-    //#endif
 
-    //#if MC>=11602
     val unformattedText: String get() {
         val builder = TextBuilder(false)
         component.asOrderedText().accept(builder)

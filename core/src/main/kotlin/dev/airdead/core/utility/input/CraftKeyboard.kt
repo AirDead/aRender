@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package dev.airdead.core.utility.input
 
 import dev.airdead.common.utility.input.Keyboard

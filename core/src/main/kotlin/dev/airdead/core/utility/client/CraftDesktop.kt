@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package dev.airdead.core.utility.client
 
 import dev.airdead.common.utility.client.Desktop

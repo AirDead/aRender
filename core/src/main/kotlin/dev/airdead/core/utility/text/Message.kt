@@ -8,6 +8,7 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.util.concurrent.ThreadLocalRandom
 
+@Suppress("unused", "MemberVisibilityCanBePrivate")
 class Message {
     private lateinit var _chatMessage: TextComponent
     val messageParts: MutableList<TextComponent> = mutableListOf()
@@ -33,9 +34,7 @@ class Message {
             messageParts.add(component)
         } else {
             component.siblings
-                //#if MC>=11600
                 .filterIsInstance<MutableText>()
-                //#endif
                 .map { TextComponent(it) }
                 .forEach { messageParts.add(it) }
         }
