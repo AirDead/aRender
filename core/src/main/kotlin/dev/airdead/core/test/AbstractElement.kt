@@ -13,9 +13,9 @@ import dev.airdead.common.misc.Rotation
 import dev.airdead.common.misc.location.V3
 import dev.airdead.common.misc.rotation
 import dev.airdead.common.misc.location.x
-import dev.airdead.common.test.animation.CraftAnimation
-import dev.airdead.common.test.animation.CraftAnimationChain
-import dev.airdead.common.test.animation.CraftAnimationExecutable
+import dev.airdead.core.animation.CraftAnimation
+import dev.airdead.core.animation.CraftAnimationChain
+import dev.airdead.core.animation.CraftAnimationExecutable
 import org.joml.Matrix4f
 import org.joml.Vector4f
 

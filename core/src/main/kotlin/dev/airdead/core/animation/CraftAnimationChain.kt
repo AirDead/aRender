@@ -3,7 +3,7 @@ package dev.airdead.core.animation
 import dev.airdead.common.animation.*
 import dev.airdead.common.element.RendererElement
 
-@Suppress("MemberVisibilityCanBePrivate")
+@Suppress("MemberVisibilityCanBePrivate", "unused")
 class CraftAnimationChain(
     override val element: RendererElement,
     override val initialAnimation: Animation

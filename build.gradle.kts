@@ -1,8 +1,9 @@
 plugins {
 	kotlin("jvm") version "2.0.0"
+	id("maven-publish")
 }
 
-group = "dev.airdead"
+group = "dev.airdead.arender"
 version = "1.0.0"
 
 repositories {
@@ -11,6 +12,7 @@ repositories {
 
 allprojects {
 	apply(plugin = "org.jetbrains.kotlin.jvm")
+	apply(plugin = "maven-publish")
 }
 
 tasks.processResources {
