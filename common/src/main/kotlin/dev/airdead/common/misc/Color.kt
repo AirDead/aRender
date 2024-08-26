@@ -13,11 +13,11 @@ import org.jetbrains.annotations.Range
  * @throws IllegalArgumentException If some value is not in it range.
  */
 @Suppress("LeakingThis")
-open class Color(
-    open var red: @Range(from = 0, to = 255) Int = 0,
-    open var green: @Range(from = 0, to = 255) Int = 0,
-    open var blue: @Range(from = 0, to = 255) Int = 0,
-    open var alpha: @Range(from = 0, to = 1) Double = 1.0
+data class Color(
+    var red: @Range(from = 0, to = 255) Int = 0,
+    var green: @Range(from = 0, to = 255) Int = 0,
+    var blue: @Range(from = 0, to = 255) Int = 0,
+    var alpha: @Range(from = 0, to = 1) Double = 1.0
 ) : Interpolatable {
 
     companion object {
@@ -87,8 +87,6 @@ open class Color(
      *
      * @param other Second [Color].
      * @param progress Progress value.
-     *
-     * @return New instance of [Color].
      *
      * @throws IllegalArgumentException If [progress] is not in it range.
      */

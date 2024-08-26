@@ -1,6 +1,6 @@
 package dev.airdead.core.element
 
-import dev.airdead.common.Matrix
+import dev.airdead.common.*
 import dev.airdead.common.animation.AnimationChain
 import dev.airdead.common.animation.AnimationExecutable
 import dev.airdead.common.animation.Easing
@@ -8,13 +8,13 @@ import dev.airdead.common.element.Element
 import dev.airdead.common.element.InteractiveElement
 import dev.airdead.common.element.RendererElement
 import dev.airdead.common.element.WorldElement
-import dev.airdead.common.handler.ClickHandler
-import dev.airdead.common.handler.HoverHandler
 import dev.airdead.common.misc.Rotation
 import dev.airdead.common.misc.location.CENTER
+import dev.airdead.common.misc.location.LEFT
 import dev.airdead.common.misc.location.V3
 import dev.airdead.common.misc.location.x
 import dev.airdead.common.misc.rotation
+import dev.airdead.common.utility.input.*
 import dev.airdead.core.animation.CraftAnimation
 import dev.airdead.core.animation.CraftAnimationChain
 import dev.airdead.core.animation.CraftAnimationExecutable
@@ -23,9 +23,8 @@ import dev.airdead.core.utility.client.CraftResolution
 /**
  * Abstract element with basic logic. You can use it for render in hud or world.
  */
+@Suppress("MemberVisibilityCanBePrivate")
 abstract class AbstractElement : InteractiveElement, RendererElement, WorldElement {
-
-    open lateinit var matrix: Matrix
 
     override var lastParent: Element? = null
     override val children: MutableList<Element> = mutableListOf()
@@ -42,9 +41,11 @@ abstract class AbstractElement : InteractiveElement, RendererElement, WorldEleme
     override var rotation: Rotation = 0.rotation()
     override var location: V3 = 0 x 0
 
-    private val onHover = mutableListOf<HoverHandler>()
-    private val onLeftClick = mutableListOf<ClickHandler>()
-    private val onRightClick = mutableListOf<ClickHandler>()
+    private val onHoverEnter = mutableListOf<HoverHandler>()
+    private val onHoverLeave = mutableListOf<HoverHandler>()
+
+    private val onMouseClick = mutableMapOf<MouseButton, ClickHandler>()
+    private val onMouseRelease = mutableMapOf<MouseButton, ClickHandler>()
 
     private val beforeRender = mutableListOf<() -> Unit>()
     private val afterRender = mutableListOf<() -> Unit>()
@@ -54,16 +55,24 @@ abstract class AbstractElement : InteractiveElement, RendererElement, WorldEleme
 
     private val animations = mutableListOf<AnimationChain>()
 
-    override fun onHover(handler: HoverHandler) {
-        this.onHover.add(handler)
+    @SimpleDsl1
+    override fun onMouseEnter(handler: HoverHandler) {
+        this.onHoverEnter.add(handler)
     }
 
-    override fun onLeftClick(handler: ClickHandler) {
-        this.onLeftClick.add(handler)
+    @SimpleDsl1
+    override fun onMouseLeave(handler: HoverHandler) {
+        this.onHoverLeave.add(handler)
     }
 
-    override fun onRightClick(handler: ClickHandler) {
-        this.onRightClick.add(handler)
+    @SimpleDsl1
+    override fun onMouseClick(button: MouseButton, handler: ClickHandler) {
+        this.onMouseClick[button] = handler
+    }
+
+    @SimpleDsl1
+    override fun onMouseRelease(button: MouseButton, handler: ClickHandler) {
+        this.onMouseRelease[button] = handler
     }
 
     override fun afterRender(action: () -> Unit) {
@@ -107,10 +116,9 @@ abstract class AbstractElement : InteractiveElement, RendererElement, WorldEleme
         renderElement(matrix, tickDelta)
         afterRender.forEach { it.invoke() }
         matrix.pop()
-
-        this.matrix = matrix
     }
 
+    @SimpleDsl1
     override fun animate(
         duration: Double,
         easing: Easing,
@@ -161,6 +169,28 @@ abstract class AbstractElement : InteractiveElement, RendererElement, WorldEleme
      */
     open fun updateAnimations(tickDelta: Float) {
         animations.removeIf { it.update(tickDelta) }
+    }
+
+    override fun handleMouseClick(context: ClickContext) {
+        if (!interactive) return
+
+        if (hovered) {
+            if (context.isPressed) onMouseClick.forEach { if (context.button == it.key) it.value.invoke(context) }
+        } else if (!context.isPressed) onMouseRelease.forEach { if (context.button == it.key) it.value.invoke(context) }
+    }
+
+    override fun handleMouseHover(mouseX: Double, mouseY: Double) {
+        if (!interactive) return
+
+        if (isHovered(mouseX, mouseY)) {
+            hovered = true
+            onHoverEnter.forEach { it.invoke(HoverContext(true, mouseX, mouseY)) }
+        } else {
+            if (hovered) {
+                hovered = false
+                onHoverLeave.forEach { it.invoke(HoverContext(false, mouseX, mouseY)) }
+            }
+        }
     }
 
     abstract fun renderElement(matrix: Matrix, tickDelta: Float)

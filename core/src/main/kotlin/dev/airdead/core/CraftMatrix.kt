@@ -9,9 +9,9 @@ import org.joml.Quaternionf
 import kotlin.math.cos
 import kotlin.math.sin
 
-@Suppress("NAME_SHADOWING", "SpellCheckingInspection")
+@Suppress("NAME_SHADOWING", "SpellCheckingInspection", "MemberVisibilityCanBePrivate")
 class CraftMatrix(
-    private val matrix: MatrixStack = MatrixStack()
+    val matrix: MatrixStack = MatrixStack()
 ) : Matrix {
 
     companion object {

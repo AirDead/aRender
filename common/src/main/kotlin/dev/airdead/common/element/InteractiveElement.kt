@@ -1,9 +1,9 @@
 package dev.airdead.common.element
 
-import dev.airdead.common.handler.ClickHandler
-import dev.airdead.common.handler.HoverHandler
-import org.joml.Matrix4f
-import org.joml.Vector4f
+import dev.airdead.common.utility.input.ClickContext
+import dev.airdead.common.utility.input.ClickHandler
+import dev.airdead.common.utility.input.HoverHandler
+import dev.airdead.common.utility.input.MouseButton
 
 /**
  * Represents interactive element.
@@ -24,32 +24,57 @@ interface InteractiveElement : ParentElement {
     var hovered: Boolean
 
     /**
-     * Sets the hover handler for the element.
+     * Sets the hover event for element.
      *
      * @param handler The hover handler.
      */
-    fun onHover(handler: HoverHandler)
+    fun onMouseEnter(handler: HoverHandler)
 
     /**
-     * Sets the left-click handler for the element.
+     * Sets the leave handler for element.
      *
+     * @param handler The hover handler.
+     */
+    fun onMouseLeave(handler: HoverHandler)
+
+    /**
+     * Sets the click handler for the element.
+     *
+     * @param button Type of button. Only [MouseButton.LEFT] or [MouseButton.RIGHT]
      * @param handler The left-click handler.
      */
-    fun onLeftClick(handler: ClickHandler)
+    fun onMouseClick(button: MouseButton, handler: ClickHandler)
 
     /**
-     * Sets the right-click handler for the element.
+     * Sets the click handler for the element.
      *
-     * @param handler The right-click handler.
+     * @param button Type of button. Only [MouseButton.LEFT] or [MouseButton.RIGHT]
+     * @param handler The left-click handler.
      */
-    fun onRightClick(handler: ClickHandler)
+    fun onMouseRelease(button: MouseButton, handler: ClickHandler)
 
     /**
      * Checks if the element is hovered over.
      *
      * @param mouseX The X coordinate of the mouse.
      * @param mouseY The Y coordinate of the mouse.
+     *
      * @return True if the element is hovered over, false otherwise.
      */
     fun isHovered(mouseX: Double, mouseY: Double): Boolean
+
+    /**
+     * Handles mouse click events.
+     *
+     * @param context The click context.
+     */
+    fun handleMouseClick(context: ClickContext)
+
+    /**
+     * Handles mouse hover events.
+     *
+     * @param mouseX The X coordinate of the mouse.
+     * @param mouseY The Y coordinate of the mouse.
+     */
+    fun handleMouseHover(mouseX: Double, mouseY: Double)
 }

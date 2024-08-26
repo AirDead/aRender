@@ -119,6 +119,5 @@ interface Keyboard {
 
     fun isKeyDown(key: Int): Boolean
 
-
     data class Modifiers(val isCtrl: Boolean, val isShift: Boolean, val isAlt: Boolean)
 }

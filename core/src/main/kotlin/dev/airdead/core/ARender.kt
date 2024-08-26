@@ -1,12 +1,16 @@
-@file:Suppress("MemberVisibilityCanBePrivate")
+@file:Suppress("MemberVisibilityCanBePrivate", "UNUSED_PARAMETER")
 
 package dev.airdead.core
 
 import dev.airdead.common.Render
 import dev.airdead.common.element.RendererElement
 import dev.airdead.common.Matrix
+import dev.airdead.common.element.InteractiveElement
 import dev.airdead.common.misc.location.V2
+import dev.airdead.common.utility.input.ClickContext
+import dev.airdead.common.utility.input.MouseButton
 import dev.airdead.core.utility.ClientAPI
+import dev.airdead.core.utility.input.CraftMouse
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback
 import net.minecraft.client.MinecraftClient
@@ -56,15 +60,35 @@ object ARender : Render() {
      * Handles the client tick event. Updates the mouse position and triggers the mouse move event.
      */
     private fun handleClientTick() {
-        val (mouseX, mouseY) = mouse.x to mouse.y
-        val isLeftClicked = isMouseButtonClicked(GLFW.GLFW_MOUSE_BUTTON_1)
-        val isRightClicked = isMouseButtonClicked(GLFW.GLFW_MOUSE_BUTTON_2)
+        val (mouseX, mouseY) = mouse.run { x to y }
 
-        // TODO Update elements
+        elements.forEach {
+            if (it is InteractiveElement) {
+                it.handleMouseHover(mouseX.toDouble(), mouseY.toDouble())
+
+                it.handleMouseClick(
+                    ClickContext(
+                        MouseButton.LEFT,
+                        CraftMouse.isButtonDown(MouseButton.LEFT),
+                        mouseX.toDouble(),
+                        mouseY.toDouble()
+                    )
+                )
+
+                it.handleMouseClick(
+                    ClickContext(
+                        MouseButton.RIGHT,
+                        CraftMouse.isButtonDown(MouseButton.RIGHT),
+                        mouseX.toDouble(),
+                        mouseY.toDouble()
+                    )
+                )
+            }
+        }
     }
 
     override val mouse: V2
-        get() = V2(ClientAPI.minecraft.mouse.x, ClientAPI.minecraft.mouse.y)
+        get() = V2(CraftMouse.scaledX, CraftMouse.scaledY)
 
     override fun isMouseButtonClicked(button: Int): Boolean = GLFW.glfwGetMouseButton(ClientAPI.minecraft.window.handle, button) == GLFW.GLFW_PRESS
 

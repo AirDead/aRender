@@ -16,7 +16,7 @@ class CraftAnimation(
         elapsedTime += tickDelta.toDouble()
 
         val progress = min(elapsedTime / duration, 1.0)
-        interpolateProperties(easing(progress))
+        properties.interpolate(easing(progress))
 
         return progress >= 1.0
     }
@@ -24,14 +24,5 @@ class CraftAnimation(
     override fun reset(): Animation {
         elapsedTime = 0.0
         return this
-    }
-
-    /**
-     * Interpolate values in [properties].
-     *
-     * @param progress The progress of the animation, ranging from 0.0 to 1.0.
-     */
-    private fun interpolateProperties(progress: Double) {
-        properties.interpolate(progress)
     }
 }
